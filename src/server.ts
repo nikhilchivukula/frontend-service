@@ -104,7 +104,7 @@ app.post('/api/events/event', async (req, res) => {
     if (err) {
       console.log ("ERROR UPDATING EVENT: " + err + "\n\nData :" + JSON.stringify(eventToUpdate))
     } else {
-    res.redirect("/event-details?id=" + eventId);
+      res.redirect("/event-details?id=" + eventId);
     }
   });
 

@@ -94,7 +94,7 @@ const SignUpPage: React.FC = () => {
 
     const dataToSend = Object.fromEntries(formData);
 
-    const formJson = { eventName, eventDate };
+    const formJson = { eventName, eventDate, eventLocation, eventDescription, eventLink, eventLead, eventBranchID };
 
     try {
       const postUrl = '/api/events/event?id=' + eventId;
