@@ -9,7 +9,7 @@
 
 // // // // export default EventDetail;
 
-// // // const SignUpPage: React.FC = () => {
+// // // const EventDetailPage: React.FC = () => {
 // // //   const [eventName, setEventName] = useState('');
 // // //   const [eventDate, setEventDate] = useState('');
 // // //   const [eventLocation, setEventLocation] = useState('');
@@ -89,7 +89,7 @@
 // // //     );
 // // //     };
 
-// // // export default SignUpPage;
+// // // export default EventDetailPage;
 
 
 import React, { useEffect, useState } from 'react';
@@ -99,7 +99,7 @@ import './Event-Detail.css';
 import './Calendar.css';
 import '../App.css';
 
-const SignUpPage: React.FC = () => {
+const EventDetailPage: React.FC = () => {
   const [eventName, setEventName] = useState('');
   const [eventDate, setEventDate] = useState('');
   const [eventLocation, setEventLocation] = useState('');
@@ -111,6 +111,32 @@ const SignUpPage: React.FC = () => {
   const [searchParams] = useSearchParams();
   const eventId = searchParams.get("id");
   console.log("Event Id to fetch = " + eventId);
+
+  const setEventDetail = (events: any[]) => {
+    if (events && events.length) {
+      var currentEvent = events[0];
+      setEventName(currentEvent.name);
+      setEventDate(currentEvent.date);
+      setEventLocation(currentEvent.location);
+      setEventDescription(currentEvent.description);
+      setEventLink(currentEvent.link);
+      setEventLead(currentEvent.lead);
+      setEventBranchID(currentEvent.branchID);
+    } else {
+      alert ("no event found");
+      // goto homepage to reset.
+      window.location.href = "/";
+    }
+  }
+
+  useEffect(() => {
+    axios.get('/api/events/event?id=' + eventId)
+      .then(response => 
+        {
+          setEventDetail(response.data);
+        })
+      .catch(error => console.error(error));
+  }, []);
 
   const submitEvent = async (ev: React.FormEvent) => {
     ev.preventDefault();
@@ -128,6 +154,7 @@ const SignUpPage: React.FC = () => {
     try {
       const postUrl = `/api/events/event?id=${eventId}`;
       await axios.post(postUrl, formData);
+      window.history.back();
       // Handle the response (e.g., redirect to a thank-you page)
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -213,4 +240,4 @@ const SignUpPage: React.FC = () => {
   );
 };
 
-export default SignUpPage;
+export default EventDetailPage;
