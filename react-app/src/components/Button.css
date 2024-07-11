@@ -1,0 +1,18 @@
+/* src/components/Button.css */
+.custom-button {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #0A3D91; /* Blue color */
+    color: #ADD8E6; /* Light blue color */
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .custom-button:hover {
+    background-color: #0d47a1; /* Darker blue on hover */
+  }
+  

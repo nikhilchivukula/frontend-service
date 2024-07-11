@@ -1,0 +1,16 @@
+/* src/components/Header.css */
+.header {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .title {
+    font-size: 60px;
+    color: #D1432D; /* Orange color */
+  }
+  
+  .vts {
+    color: #0A3D91; /* Blue color */
+    font-size: 40px;
+  }
+  
