@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import Calendar from './Calendar';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { format, subHours, startOfMonth } from 'date-fns';
 import '@zach.codes/react-calendar/dist/calendar-tailwind.css';
@@ -51,14 +52,40 @@ export const events: { [key: string]: EventType[] } = {
 
 const Home: React.FC = () => {
 
+  // Initiative the calendar eventItems data property to SAMPLE data
+  // let eventItems:EventType[] = [] ; //events.firstMonth;
+  const [eventItems, setEventItems] = useState<EventType[]>([]);
+
+  const [vtsEvents, setVTSEvents] = useState<any[]>([]);
+
+  useEffect(() => {
+    axios.get('/api/events/upcoming')
+      .then(response => {
+        setVTSEvents(response.data);
+        updateCalendarEvents(response.data);
+      })
+      .catch(error => console.error(error));
+  }, []);
+
+    // UPDATE the calendar eventItems data property to real backend data
+    function updateCalendarEvents(vtsEvents: any[]) {
+    // alert (vtsEvents.length);
+
+    let events = vtsEvents.map ( vtsEvent => {
+      var event = { title: vtsEvent.name, date: new Date(vtsEvent.date) };
+      return event;
+    })
+
+    // Update the calendar useState variable so React uses it to show the new events.
+    setEventItems(events);
+  }
 
 
  const MyMonthlyCalendar = () => {
     let [currentMonth, setCurrentMonth] = useState<Date>(
       startOfMonth(new Date())
     );
-    let eventItems:EventType[] = events.firstMonth;
-  
+
     return (
       <MonthlyCalendar
         currentMonth={currentMonth}
