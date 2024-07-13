@@ -41,5 +41,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@zach.codes/react-calendar": "^0.3.3",
+    "date-fns": "^3.6.0"
   }
 }
