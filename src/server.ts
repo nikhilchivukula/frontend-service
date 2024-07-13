@@ -47,7 +47,7 @@ const initDb = async () => {
 
   // Add Sample data
 
-  // addSampleData(db);
+// addSampleData(db);
 
   return db;
 }
@@ -154,17 +154,17 @@ function addSampleData(db: any) {
   // add sample events
   var insertPast = 'INSERT INTO EVENTS (name, date, location, description, link, lead, branchID) VALUES (?,?,?, ?,?,?,?)';
   // Name, Date, Des, Link, Lead, ID
-  db.run(insertPast, ["August Health and Wellness Workshop", "2024-05-15 15:30:45", "Microsoft Studio H, Bellevue, Wa", "Learn about stress management, mindfulness, and self-care.", "NA", "Upendar Sandadi", "SEA"]);
-  db.run(insertPast, ["Community Cleanup Drive:", "2024-06-05 14:00:00", "Green Lake Park", "Clean up litter and promote environmental awareness.", "NA", "Santhi Kalidindi", "SEA"]);
-  db.run(insertPast, ["Interactive Sessions with 'Thought Notch Robotica'", "2024-04-19 17:00:00", "Online", "Interact with the Nethra Robotics Team who is attending the Robotics World Championship in Houston", "NA", "Dr. Aparna", "DAL"])
-  db.run(insertPast, ["Youth Talent Show", "2024-07-20", "Issaquah Senior Center", "Talent Show for the youth to display their talents.", "NA", "Upendar Sandadi", "SEA"])
+  db.run(insertPast, ["SAMPLE: August Health and Wellness Workshop", "2024-05-15 15:30:45", "Microsoft Studio H, Bellevue, Wa", "Learn about stress management, mindfulness, and self-care.", "NA", "Upendar Sandadi", "SEA"]);
+  db.run(insertPast, ["SAMPLE: Community Cleanup Drive:", "2024-06-05 14:00:00", "Green Lake Park", "Clean up litter and promote environmental awareness.", "NA", "Santhi Kalidindi", "SEA"]);
+  db.run(insertPast, ["SAMPLE: Interactive Sessions with 'Thought Notch Robotica'", "2024-04-19 17:00:00", "Online", "Interact with the Nethra Robotics Team who is attending the Robotics World Championship in Houston", "NA", "Dr. Aparna", "DAL"])
+  db.run(insertPast, ["SAMPLE: Youth Talent Show", "2024-07-20", "Issaquah Senior Center", "Talent Show for the youth to display their talents.", "NA", "Upendar Sandadi", "SEA"])
 
 
 
   console.log("Adding sample Executives data.");
   // populate sample data
   var insertExecs = 'INSERT INTO EXECUTIVES (name, picture, description) VALUES (?,?,?)';
-  db.run(insertExecs, ["Third Exec Name 3", "https://developerhowto.com/wp-content/uploads/2018/12/node-express-mocha-chai.png", "Third executive description text blah blah"]);
-  db.run(insertExecs, ["Fourth Exec Name 4", "https://th.bing.com/th/id/OIP.4DvdfTyTJsP10bST3HPsAAHaDt?rs=1&pid=ImgDetMain", "Fourth executive description text blah blah"]);
+  db.run(insertExecs, ["SAMPLE: Third Exec Name 3", "https://developerhowto.com/wp-content/uploads/2018/12/node-express-mocha-chai.png", "Third executive description text blah blah"]);
+  db.run(insertExecs, ["SAMPLE: Fourth Exec Name 4", "https://th.bing.com/th/id/OIP.4DvdfTyTJsP10bST3HPsAAHaDt?rs=1&pid=ImgDetMain", "Fourth executive description text blah blah"]);
 }
 

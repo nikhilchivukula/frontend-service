@@ -1,3 +1,9 @@
+/*
+This was the very first file we created to validate the single repo for both React and Node codebase together.
+
+TEST - DO NOT DELETE. NOT USED IN VTS-HUB app project.
+*/
+
 'use strict';
 
 const express = require('express');
