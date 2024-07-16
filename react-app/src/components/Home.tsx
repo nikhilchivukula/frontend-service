@@ -59,7 +59,9 @@ const Home: React.FC = () => {
   const [vtsEvents, setVTSEvents] = useState<any[]>([]);
 
   useEffect(() => {
-    axios.get('/api/events/upcoming')
+    var now = new Date(); 
+    var month = now.getMonth();
+    axios.get('/api/events/calendar?month=' + month)
       .then(response => {
         setVTSEvents(response.data);
         updateCalendarEvents(response.data);
@@ -86,10 +88,24 @@ const Home: React.FC = () => {
       startOfMonth(new Date())
     );
 
+    const onMonthChange = (date: any) => {
+      setCurrentMonth(date);
+      startOfMonth(date);
+
+      // var month = date.getMonth();
+      // axios.get('/api/events/calendar?month=' + month)        
+      //   .then(response => {
+      //     setVTSEvents(response.data);
+      //     updateCalendarEvents(response.data);
+      //   })
+      //   .catch(error => console.error(error));
+
+    }
+    
     return (
       <MonthlyCalendar
         currentMonth={currentMonth}
-        onCurrentMonthChange={date => setCurrentMonth(date)}
+        onCurrentMonthChange={date => onMonthChange(date)}
       >
         <MonthlyNav />
         <MonthlyBody
@@ -119,7 +135,7 @@ const Home: React.FC = () => {
 
       {/* <Calendar /> */}
 
-      <MyMonthlyCalendar />
+        <MyMonthlyCalendar />
 
       <div>
         <button><Link to="/upcoming-events">Upcoming Events</Link></button>

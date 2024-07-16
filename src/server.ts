@@ -61,6 +61,34 @@ app.get('/api/events/upcoming', async (req, res) => {
   res.json(events);
 });
 
+// Routes
+app.get('/api/events/calendar', async (req, res) => {
+  const db = await initDb();
+  var now = new Date();
+
+  // month is 0-index based. 0-11 months in a year.
+  const monthParam: any = req.query.month ?? now.getMonth();
+
+  // const month = parseInt(monthParam);
+  // var monthStart = "date('" + now.getFullYear() + "-" + month + "-1')";
+  // var monthEnd = "date('" + now.getFullYear() + "-" + month + "-31')";
+  // const query = 'SELECT * FROM events WHERE date BETWEEN ' + monthStart + ' and ' + monthEnd;
+
+  // const monthInt = parseInt(monthParam);
+  // const month = monthInt < 10 ? ("0" + monthInt) : monthInt;
+  // var monthStart = "'" + now.getFullYear() + "-" + month + "-1'";
+  // var monthEnd = "'" + now.getFullYear() + "-" + month + "-31'";
+  // const query = 'SELECT * FROM events WHERE date BETWEEN ' + monthStart + ' and ' + monthEnd;
+
+  const query = 'SELECT * FROM events';
+
+  console.log ("Query being made = " + query);
+  const events = await db.all(query);
+
+  res.header("Access-Control-Allow-Origin", "*");
+  res.json(events);
+});
+
 app.get('/api/events/past', async (req, res) => {
   const db = await initDb();
   const events = await db.all('SELECT * FROM events WHERE date < date("now")');
@@ -156,6 +184,7 @@ function addSampleData(db: any) {
   // Name, Date, Des, Link, Lead, ID
   db.run(insertPast, ["SAMPLE: August Health and Wellness Workshop", "2024-05-15 15:30:45", "Microsoft Studio H, Bellevue, Wa", "Learn about stress management, mindfulness, and self-care.", "NA", "Upendar Sandadi", "SEA"]);
   db.run(insertPast, ["SAMPLE: Community Cleanup Drive:", "2024-06-05 14:00:00", "Green Lake Park", "Clean up litter and promote environmental awareness.", "NA", "Santhi Kalidindi", "SEA"]);
+  db.run(insertPast, ["SAMPLE: NO TIME Community Cleanup Drive:", "2024-06-05", "Green Lake Park", "Clean up litter and promote environmental awareness.", "NA", "Santhi Kalidindi", "SEA"]);
   db.run(insertPast, ["SAMPLE: Interactive Sessions with 'Thought Notch Robotica'", "2024-04-19 17:00:00", "Online", "Interact with the Nethra Robotics Team who is attending the Robotics World Championship in Houston", "NA", "Dr. Aparna", "DAL"])
   db.run(insertPast, ["SAMPLE: Youth Talent Show", "2024-07-20", "Issaquah Senior Center", "Talent Show for the youth to display their talents.", "NA", "Upendar Sandadi", "SEA"])
 
