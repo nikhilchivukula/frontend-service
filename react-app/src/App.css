@@ -6,3 +6,11 @@
 .button-container {
   margin-top: 20px;
 }
+
+.event-item a {
+  color: blue;
+}
+
+.event-item a:hover {
+  text-decoration: underline;
+}

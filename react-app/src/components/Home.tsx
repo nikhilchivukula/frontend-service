@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { format, subHours, startOfMonth } from 'date-fns';
 import '@zach.codes/react-calendar/dist/calendar-tailwind.css';
 import './Calendar.css';
+import { MonthlyCalendarEventItem, DefaultEventItemProps } from './MonthlyCalendarEventItem'
+import VtsHubHeader from './VtsHubHeader';
 
 import {
   MonthlyBody,
@@ -54,7 +56,7 @@ const Home: React.FC = () => {
 
   // Initiative the calendar eventItems data property to SAMPLE data
   // let eventItems:EventType[] = [] ; //events.firstMonth;
-  const [eventItems, setEventItems] = useState<EventType[]>([]);
+  const [eventItems, setEventItems] = useState<any[]>([]);
 
   const [vtsEvents, setVTSEvents] = useState<any[]>([]);
 
@@ -74,7 +76,7 @@ const Home: React.FC = () => {
     // alert (vtsEvents.length);
 
     let events = vtsEvents.map ( vtsEvent => {
-      var event = { title: vtsEvent.name, date: new Date(vtsEvent.date) };
+      var event = { title: vtsEvent.name, date: new Date(vtsEvent.date), id: vtsEvent.id };
       return event;
     })
 
@@ -114,9 +116,10 @@ const Home: React.FC = () => {
           <MonthlyDay
           renderDay={data =>
             data.map((item: any, index) => (
-              <DefaultMonthlyEventItem
+              <MonthlyCalendarEventItem
                 key={index}
                 title={item.title}
+                id={item.id}
                 // Format the date here to be in the format you prefer
                 date={format(item.date, 'k:mm')}
               />
@@ -133,16 +136,11 @@ const Home: React.FC = () => {
     <div>
       <b>Homepage</b>
 
-      {/* <Calendar /> */}
+        <VtsHubHeader />
 
         <MyMonthlyCalendar />
 
-      <div>
-        <button><Link to="/upcoming-events">Upcoming Events</Link></button>
-        <button><Link to="/past-events">Past Events</Link></button>
-        <button><Link to="/executives">Executive Board</Link></button>
-        <button><Link to="/signup">Sign Up</Link></button>
-      </div>
+
     </div>
   );
 }
