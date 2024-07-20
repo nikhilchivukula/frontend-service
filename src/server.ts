@@ -301,12 +301,19 @@ function addSampleData(db: any) {
   db.run(insertPast, ["SAMPLE: Interactive Sessions with 'Thought Notch Robotica'", "2024-04-19 17:00:00", "Online", "Interact with the Nethra Robotics Team who is attending the Robotics World Championship in Houston", "NA", "Dr. Aparna", "DAL"])
   db.run(insertPast, ["SAMPLE: Youth Talent Show", "2024-07-20", "Issaquah Senior Center", "Talent Show for the youth to display their talents.", "NA", "Upendar Sandadi", "SEA"])
 
-
-
   console.log("Adding sample Executives data.");
   // populate sample data
   var insertExecs = 'INSERT INTO EXECUTIVES (name, picture, description) VALUES (?,?,?)';
   db.run(insertExecs, ["SAMPLE: Third Exec Name 3", "https://developerhowto.com/wp-content/uploads/2018/12/node-express-mocha-chai.png", "Third executive description text blah blah"]);
   db.run(insertExecs, ["SAMPLE: Fourth Exec Name 4", "https://th.bing.com/th/id/OIP.4DvdfTyTJsP10bST3HPsAAHaDt?rs=1&pid=ImgDetMain", "Fourth executive description text blah blah"]);
+
+  console.log("Adding sample USERS data.");
+  // populate sample USERS data
+  // id INTEGER AUTOINCREMENT, auth_id INTEGER, display_name TEXT, first_name TEXT, last_name TEXT, email TEXT, profile_picture TEXT, user_role INTEGER, branchID TEXT, create_date datetime
+
+  var insertUsers = 'INSERT INTO USERS (auth_id, display_name, first_name, last_name, email, profile_picture, user_role, branchID, create_date) VALUES (?,?,?, ?,?,?, ?,?,?)';
+  db.run(insertUsers, [117281734342025434229, "Nikhil Chivukula", "Nikhil", "Chivukula", "nicksterchiv@gmail.com", "https://lh3.googleusercontent.com/a/ACg8ocKFc9yhu4dZogOd3KNWst5jpoqxINmrTyua5hSqUfGJtp25yKMs=s96-c", 0, "SEA-B", '2024-07-06 13:11']);
+  // db.run(insertUsers, ["SAMPLE: Fourth Exec Name 4", "https://th.bing.com/th/id/OIP.4DvdfTyTJsP10bST3HPsAAHaDt?rs=1&pid=ImgDetMain", "Fourth executive description text blah blah"]);
+
 }
 
