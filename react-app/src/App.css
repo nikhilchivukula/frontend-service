@@ -14,3 +14,17 @@
 .event-item a:hover {
   text-decoration: underline;
 }
+
+.flex-container {
+  display: flex;
+}
+
+.flex-item {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #000;
+}
+
+.vtsuser {
+  text-align: right;
+}

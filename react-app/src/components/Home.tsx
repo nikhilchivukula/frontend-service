@@ -7,6 +7,7 @@ import '@zach.codes/react-calendar/dist/calendar-tailwind.css';
 import './Calendar.css';
 import { MonthlyCalendarEventItem, DefaultEventItemProps } from './MonthlyCalendarEventItem'
 import VtsHubHeader from './VtsHubHeader';
+import VtsUser from './VtsUser';
 
 import {
   MonthlyBody,
@@ -61,7 +62,7 @@ const Home: React.FC = () => {
   const [vtsEvents, setVTSEvents] = useState<any[]>([]);
 
   useEffect(() => {
-    var now = new Date(); 
+    var now = new Date();
     var month = now.getMonth();
     axios.get('/api/events/calendar?month=' + month)
       .then(response => {
@@ -71,11 +72,11 @@ const Home: React.FC = () => {
       .catch(error => console.error(error));
   }, []);
 
-    // UPDATE the calendar eventItems data property to real backend data
-    function updateCalendarEvents(vtsEvents: any[]) {
+  // UPDATE the calendar eventItems data property to real backend data
+  function updateCalendarEvents(vtsEvents: any[]) {
     // alert (vtsEvents.length);
 
-    let events = vtsEvents.map ( vtsEvent => {
+    let events = vtsEvents.map(vtsEvent => {
       var event = { title: vtsEvent.name, date: new Date(vtsEvent.date), id: vtsEvent.id };
       return event;
     })
@@ -85,7 +86,7 @@ const Home: React.FC = () => {
   }
 
 
- const MyMonthlyCalendar = () => {
+  const MyMonthlyCalendar = () => {
     let [currentMonth, setCurrentMonth] = useState<Date>(
       startOfMonth(new Date())
     );
@@ -103,7 +104,7 @@ const Home: React.FC = () => {
       //   .catch(error => console.error(error));
 
     }
-    
+
     return (
       <MonthlyCalendar
         currentMonth={currentMonth}
@@ -114,18 +115,18 @@ const Home: React.FC = () => {
           events={eventItems}
         >
           <MonthlyDay
-          renderDay={data =>
-            data.map((item: any, index) => (
-              <MonthlyCalendarEventItem
-                key={index}
-                title={item.title}
-                id={item.id}
-                // Format the date here to be in the format you prefer
-                date={format(item.date, 'k:mm')}
-              />
-            ))
-          }
-        />
+            renderDay={data =>
+              data.map((item: any, index) => (
+                <MonthlyCalendarEventItem
+                  key={index}
+                  title={item.title}
+                  id={item.id}
+                  // Format the date here to be in the format you prefer
+                  date={format(item.date, 'k:mm')}
+                />
+              ))
+            }
+          />
         </MonthlyBody>
       </MonthlyCalendar>
     );
@@ -134,11 +135,15 @@ const Home: React.FC = () => {
 
   return (
     <div>
-      <b>Homepage</b>
+      <div className="top-header flex-container">
+        <div className="page-name flex-item">Homepage 2</div>
 
-        <VtsHubHeader />
+        <VtsUser />
+      </div>
 
-        <MyMonthlyCalendar />
+      <VtsHubHeader />
+
+      <MyMonthlyCalendar />
 
 
     </div>

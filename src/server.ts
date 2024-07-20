@@ -56,6 +56,25 @@ const initDb = async () => {
     description TEXT
   )`);
 
+  // Store ID for local identifier (users table), display name, first, last name, email, prof pic, branch ID, Role, When was Acc created
+  // confirm that each branch has their own admin/director. 
+  // Getting ready to show a demo for the VTS Hub App, and had a few questions regarding the specifics of VTSeva. 
+  //    1. Does each branch have only 1 director? Can one person be director for multiple branches (Not including National directors/advisors)
+  
+  console.log("Creating USERS if not exist.");
+  await db.exec(`CREATE TABLE IF NOT EXISTS USERS (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    auth_id INTEGER,
+    display_name TEXT,
+    first_name TEXT,
+    last_name TEXT,
+    email TEXT,
+    profile_picture TEXT,
+    user_role INTEGER,
+    branchID TEXT,
+    create_date datetime
+  )`);
+
   // Add Sample data
 
 // addSampleData(db);
@@ -70,7 +89,7 @@ app.get('/auth/google',
 
 app.get('/google/callback',
   passport.authenticate('google', {
-      successRedirect: '/protected',
+      successRedirect: '/auth/success',
       failureRedirect: '/failure'
   })
 )
@@ -83,6 +102,25 @@ app.get('/protected', isLoggedIn, (req: any, res) => {
   res.send ('Hello!' + JSON.stringify(req.user));
 });
 
+app.get('/auth/success', isLoggedIn, (req: any, res) => {
+  // res.send ('Hello!' + JSON.stringify(req.user));
+  let cookieUser = req.user._json;
+  cookieUser.vts = { branchId: 'SEA', role: 0 };
+  res.cookie ("user", JSON.stringify(cookieUser));
+  res.redirect ('/');
+});
+
+app.get('/auth/logout', (req: any, res: any, next: any) => {
+  res.clearCookie("user");
+  req.logout(function(err: string) {
+    if (err) { 
+      return next(err); 
+    }
+    req.session.destroy();
+    res.redirect('/');
+  });
+
+});
 /* Google Auth routes - END */
 
 
@@ -139,6 +177,13 @@ app.get('/api/executives', async (req, res) => {
   res.json(executives);
 });
 
+app.get('/api/users', async (req, res) => {
+  const db = await initDb();
+  const users = await db.all('SELECT * FROM users');
+  res.header("Access-Control-Allow-Origin", "*");
+  res.json(users);
+});
+
 
 
 app.get('/api/events/event', async (req, res) => {
@@ -178,6 +223,39 @@ app.post('/api/events/event', async (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.json(event);
 });
+
+
+/* 
+  This method takes event-id as querystring param and the Event Details as form input and updates the event in the database.
+*/
+/*
+app.post('/api/users/sample_users', async (req, res) => {
+  const db = await initDb();
+
+  console.log (JSON.stringify(req.body));
+
+  const eventToUpdate = [req.body.eventName, req.body.eventDate, req.body.eventLocation, req.body.eventDescription, req.body.eventLink, req.body.eventLead, req.body.eventBranchID, eventId];
+  const sql = "UPDATE Events SET Name = ?, Date = ?, Location = ?, Description = ?, Link = ?, Lead = ?, branchID = ? WHERE (ID = ?)";
+  db.run(sql, eventToUpdate, function (err: any) {
+    if (err) {
+      console.log ("ERROR UPDATING EVENT: " + err + "\n\nData :" + JSON.stringify(eventToUpdate))
+    } else {
+      res.redirect("/event-details?id=" + eventId);
+    }
+  });
+
+  const querySql = 'SELECT * FROM events WHERE id = ' + eventId;
+  const events = await db.all(querySql);
+  const event = events.length == 1 ? events[0] : null;
+
+  res.header("Access-Control-Allow-Origin", "*");
+  res.json(event);
+});
+*/
+
+
+
+
 
 //server.js method app.post - enhance and get the event id there + extract properties of event, take input from query stream and focus on simplifying css files. 
 

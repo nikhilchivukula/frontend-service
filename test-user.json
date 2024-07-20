@@ -35,11 +35,4 @@
         "email": "nicksterchiv@gmail.com",
         "email_verified": true
     }
-    // Store ID for local identifier (users table), display name, first, last name, email, prof pic, branch ID, Role, When was Acc created
-    // confirm that each branch has their own admin/director. 
 }
-
-
-// Getting ready to show a demo for the VTS Hub App, and had a few questions regarding the specifics of VTSeva. 
-    1. Does each branch have only 1 director? Can one person be director for multiple branches (Not including National directors/advisors)
-    2. 

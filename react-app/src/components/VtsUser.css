@@ -1,0 +1,20 @@
+
+div.vtshubheader {
+    background-color: lightgrey;
+    text-align: center;
+}
+
+div.vtshubheader button {
+    width: 20%;
+    height: 50px;
+    margin: 5px;
+    border-color: black;
+    border-width: 2px;
+}
+
+div.vtshubheader button a {
+    display: block;
+    height: 50px;
+    padding-top: 10px;
+    text-align: center;
+}
