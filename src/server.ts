@@ -2,20 +2,31 @@ import express from 'express';
 import sqlite3 from 'sqlite3';
 import { open } from 'sqlite';
 import bodyParser from 'body-parser';
+const session = require ('express-session')
+const passport = require('passport');
+
+
+const path = require('path');
+
+require('./auth');
+
+
+function isLoggedIn(req: any, res: any, next: any) {
+    req.user ? next() : res.sendStatus(401);
+}
+
 
 const app = express();
 const port = 8080;
 
-const path = require('path');
 const reactAppFolder = path.join(__dirname, '.././react-app/build');
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-// app.use(bodyParser.text());
-// app.use (express.raw());
-// app.use(express.urlencoded({ extended: false }));
-
+app.use(session({ secret: "cats"}))
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Initialize database
 const initDb = async () => {
@@ -51,6 +62,30 @@ const initDb = async () => {
 
   return db;
 }
+
+/* Google Auth routes - BEGIN */
+app.get('/auth/google',
+  passport.authenticate('google', { scope: ['email', 'profile']})
+);
+
+app.get('/google/callback',
+  passport.authenticate('google', {
+      successRedirect: '/protected',
+      failureRedirect: '/failure'
+  })
+)
+
+app.get('/failure', (req, res) => {
+  res.send('something went wrong');
+});
+
+app.get('/protected', isLoggedIn, (req: any, res) => {
+  res.send ('Hello!' + JSON.stringify(req.user));
+});
+
+/* Google Auth routes - END */
+
+
 
 // Routes
 app.get('/api/events/upcoming', async (req, res) => {

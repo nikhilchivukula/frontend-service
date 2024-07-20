@@ -12,7 +12,7 @@ return (
         <button><Link to="/upcoming-events">Upcoming Events</Link></button>
         <button><Link to="/past-events">Past Events</Link></button>
         <button><Link to="/executives">Executive Board</Link></button>
-        <button><Link to="/signup">Sign Up</Link></button>
+        <button><a href='/auth/google'>Sign-in</a></button>
     </div>
   );
 }
