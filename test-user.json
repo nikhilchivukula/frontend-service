@@ -1,0 +1,45 @@
+{
+    "provider": "google",
+    "sub": "117281734342025434229",
+    "id": "117281734342025434229",
+    "displayName": "Nikhil Chivukula",
+    "name": {
+        "givenName": "Nikhil",
+        "familyName": "Chivukula"
+    },
+    "given_name": "Nikhil",
+    "family_name": "Chivukula",
+    "email_verified": true,
+    "verified": true,
+    "email": "nicksterchiv@gmail.com",
+    "emails": [
+        {
+            "value": "nicksterchiv@gmail.com",
+            "type": "account"
+        }
+    ],
+    "photos": [
+        {
+            "value": "https://lh3.googleusercontent.com/a/ACg8ocKFc9yhu4dZogOd3KNWst5jpoqxINmrTyua5hSqUfGJtp25yKMs=s96-c",
+            "type": "default"
+        }
+    ],
+    "picture": "https://lh3.googleusercontent.com/a/ACg8ocKFc9yhu4dZogOd3KNWst5jpoqxINmrTyua5hSqUfGJtp25yKMs=s96-c",
+    "_raw": "{\n \"sub\": \"117281734342025434229\",\n \"name\": \"Nikhil Chivukula\",\n \"given_name\": \"Nikhil\",\n \"family_name\": \"Chivukula\",\n \"picture\": \"https://lh3.googleusercontent.com/a/ACg8ocKFc9yhu4dZogOd3KNWst5jpoqxINmrTyua5hSqUfGJtp25yKMs\\u003ds96-c\",\n \"email\": \"nicksterchiv@gmail.com\",\n \"email_verified\": true\n}",
+    "_json": {
+        "sub": "117281734342025434229",
+        "name": "Nikhil Chivukula",
+        "given_name": "Nikhil",
+        "family_name": "Chivukula",
+        "picture": "https://lh3.googleusercontent.com/a/ACg8ocKFc9yhu4dZogOd3KNWst5jpoqxINmrTyua5hSqUfGJtp25yKMs=s96-c",
+        "email": "nicksterchiv@gmail.com",
+        "email_verified": true
+    }
+    // Store ID for local identifier (users table), display name, first, last name, email, prof pic, branch ID, Role, When was Acc created
+    // confirm that each branch has their own admin/director. 
+}
+
+
+// Getting ready to show a demo for the VTS Hub App, and had a few questions regarding the specifics of VTSeva. 
+    1. Does each branch have only 1 director? Can one person be director for multiple branches (Not including National directors/advisors)
+    2. 
