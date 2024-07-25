@@ -343,10 +343,10 @@ function AddSampleDataIfNotAlready(db: any) {
         var insertPast = 'INSERT INTO EVENTS (name, date, location, description, link, lead, branchID) VALUES (?,?,?, ?,?,?,?)';
         var stmt = db.prepare(insertPast);
         // Name, Date, Des, Link, Lead, ID
-        stmt.run("SAMPLE: August Health and Wellness Workshop", "2024-05-15 15:30:45", "Microsoft Studio H, Bellevue, Wa", "Learn about stress management, mindfulness, and self-care.", "NA", "Upendar Sandadi", "SEA");
-        stmt.run("SAMPLE: Community Cleanup Drive:", "2024-06-05 14:00:00", "Green Lake Park", "Clean up litter and promote environmental awareness.", "NA", "Santhi Kalidindi", "SEA");
+        stmt.run("SAMPLE: August Health and Wellness Workshop", "2024-05-15 15:30:00Z", "Microsoft Studio H, Bellevue, Wa", "Learn about stress management, mindfulness, and self-care.", "NA", "Upendar Sandadi", "SEA");
+        stmt.run("SAMPLE: Community Cleanup Drive:", "2024-06-05 14:00:00Z", "Green Lake Park", "Clean up litter and promote environmental awareness.", "NA", "Santhi Kalidindi", "SEA");
         stmt.run("SAMPLE: NO TIME Community Cleanup Drive:", "2024-06-05", "Green Lake Park", "Clean up litter and promote environmental awareness.", "NA", "Santhi Kalidindi", "SEA");
-        stmt.run("SAMPLE: Interactive Sessions with 'Thought Notch Robotica'", "2024-04-19 17:00:00", "Online", "Interact with the Nethra Robotics Team who is attending the Robotics World Championship in Houston", "NA", "Dr. Aparna", "DAL")
+        stmt.run("SAMPLE: Interactive Sessions with 'Thought Notch Robotica'", "2024-04-19 17:00:00Z", "Online", "Interact with the Nethra Robotics Team who is attending the Robotics World Championship in Houston", "NA", "Dr. Aparna", "DAL")
         stmt.run("SAMPLE: Youth Talent Show", "2024-07-29 09:00:00Z", "Issaquah Senior Center", "Talent Show for the youth to display their talents.", "NA", "Upendar Sandadi", "SEA")
     } else {
         console.log('EVENTS table has ' + savedEvents?.length + ' rows already');

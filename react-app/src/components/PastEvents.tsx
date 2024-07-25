@@ -29,6 +29,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './EventPages.css'; // Import the CSS file where the reusable class is defined
+
 
 const PastEvents: React.FC = () => {
   const [events, setEvents] = useState<any[]>([]);
@@ -45,16 +47,19 @@ const PastEvents: React.FC = () => {
   };
 
   return (
-    <div>
-      <h2>Past Events</h2>
-      <ul>
-        {events.map(event => (
-          <li key={event.id}>
-            {event.name} - {event.date}
-            <button onClick={() => handleEdit(event.id)}>Edit</button>
-          </li>
-        ))}
-      </ul>
+    <div className="ExecutiveBoard-container">
+      <div className="ExecutiveBoard-pageTitle">
+        Past Events
+      </div>
+
+      <div className="ExecutiveBoard-textActual">
+          {events.map(event => (
+            <li key={event.id}>
+              {event.name} - {event.date}
+              <button onClick={() => handleEdit(event.id)}> -  Edit</button>
+            </li>
+          ))}
+      </div>
     </div>
   );
 };

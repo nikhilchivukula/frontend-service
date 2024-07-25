@@ -1,6 +1,7 @@
 
-div.vtshubheader {
-    background-color: lightgrey;
+.vtshubheader {
+    background-color: #ffa148;
+    color: #ffa148;
     text-align: center;
 }
 

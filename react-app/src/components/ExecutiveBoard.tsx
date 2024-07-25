@@ -8,6 +8,7 @@ const ExecutiveBoard: React.FC = () => {
         <h2>ExecutiveBoard</h2>
         <div className="logo">VH</div>
       </div>
+      
       <div className="ExecutiveBoard-content">
         {/* Add the content for the ExecutiveBoardutive Board page here */}
         <div className="ExecutiveBoard-member">

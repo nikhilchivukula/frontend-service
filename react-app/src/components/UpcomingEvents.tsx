@@ -24,6 +24,7 @@
 
 // // // export default UpcomingEvents;
 
+import './EventPages.css'; // Import the CSS file where the reusable class is defined
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -44,16 +45,19 @@ const UpcomingEvents: React.FC = () => {
   };
 
   return (
-    <div>
-      <h2>Upcoming Events</h2>
-      <ul>
+    <div className="ExecutiveBoard-container">
+      <div className="ExecutiveBoard-pageTitle">
+        Upcoming Events
+      </div>
+    
+      <div className="ExecutiveBoard-textActual">
         {events.map(event => (
           <li key={event.id}>
             {event.name} - {event.date}
-            <button onClick={() => handleEdit(event.id)}>Edit</button>
+            <button onClick={() => handleEdit(event.id)}> -  Edit</button>
           </li>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

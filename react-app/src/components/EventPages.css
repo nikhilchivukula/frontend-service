@@ -1,0 +1,119 @@
+/* ExecutiveBoard.css */
+
+.exec-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .exec-member {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+  }
+  
+  .exec-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+  
+  .exec-member h3 {
+    margin: 10px 0;
+    color: #2E3192;
+  }
+  
+  .exec-member p {
+    text-align: center;
+    color: #555;
+  }
+  
+  
+  .ExecutiveBoard-container {
+      display: flex;
+      flex-direction: column;
+      align-items: left;
+      background-color: rgb(199, 199, 199);
+      border-radius: 10px;
+      padding: 20px;
+    }
+    
+    .ExecutiveBoard-header {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding: 10px;
+    }
+    
+    .ExecutiveBoard-pageTitle {
+      color: #2E3192;
+      text-decoration-color: #F26522;
+      font-size: large;
+      align-items: center;
+    }
+    
+    .ExecutiveBoard-header .logo {
+      font-size: 2em;
+      color: #F26522;
+      font-weight: bold;
+    }
+    
+    .ExecutiveBoard-content {
+      width: 100%;
+      height: 300px;
+      border: 2px solid #F26522;
+      margin-bottom: 20px;
+    }
+    .ExecutiveBoard-textActual{
+      width: 100%;
+      padding: 20px;
+      height: 100%;
+      margin-bottom: 20px;
+      text-decoration-color: #39B5E0;
+    }
+    
+    .buttons-container {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+    }
+    
+    .buttons-container button {
+      width: 45%;
+      margin: 10px 0;
+      padding: 15px;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #39B5E0;
+      background-color: #2E3192;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .buttons-container button:hover {
+      background-color: #1E2075;
+    }
+    
+    .exec-board-btn {
+      background-color: #2E3192;
+    }
+    
+    .dummy-btn {
+      background-color: #2E3192;
+    }
+    
+    .upcoming-events-btn {
+      background-color: #2E3192;
+    }
+    
+    .past-events-btn {
+      background-color: #2E3192;
+    }
+    

@@ -136,7 +136,7 @@ const Home: React.FC = () => {
   return (
     <div>
       <div className="top-header flex-container">
-        <div className="page-name flex-item">Homepage 2</div>
+        <div className="topBar flex-item">Homepage 2</div>
 
         <VtsUser />
       </div>
