@@ -7,12 +7,14 @@
         "start-js": "node index.js",
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "ts-node src/server.ts",
+        "better": "ts-node src/better-server.ts",
         "build": "tsc",
         "serverStart": "nodemon index.js"
     },
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "better-sqlite3": "^11.1.2",
         "cors": "^2.8.5",
         "dotenv": "^16.4.5",
         "express": "^4.19.2",
