@@ -1,15 +1,15 @@
-import express from 'express';
-// import sqlite3 from 'sqlite3';
-// const sqlite3 = require("sqlite3").verbose();
-const betterSqlite3 = require("better-sqlite3");
-// import { open } from 'sqlite';
-import bodyParser from 'body-parser';
-const session = require('express-session')
-const passport = require('passport');
+    import express from 'express';
+    //import sqlite3 from 'sqlite3';
+    //const sqlite3 = require("sqlite3").verbose();
+    const betterSqlite3 = require("better-sqlite3");
+    // import { open } from 'sqlite';
+    import bodyParser from 'body-parser';
+    const session = require('express-session')
+    const passport = require('passport');
 
-const path = require('path');
+    const path = require('path');
 
-require('./auth');
+    require('./auth');
 
 
 function isLoggedIn(req: any, res: any, next: any) {
@@ -243,23 +243,60 @@ app.get('/api/events/event', async (req, res) => {
 app.post('/api/events/event', async (req, res) => {
     const db = initDb();
     const eventId = req.query.id;
-
-    console.log(JSON.stringify(req.body));
-
-    const eventToUpdate = [req.body.eventName, req.body.eventDate, req.body.eventLocation, req.body.eventDescription, req.body.eventLink, req.body.eventLead, req.body.eventBranchID, eventId];
-    const sql = "UPDATE Events SET Name = ?, Date = ?, Location = ?, Description = ?, Link = ?, Lead = ?, branchID = ? WHERE (ID = ?)";
-
-    console.log("UPDATING EVENT: " + JSON.stringify(eventToUpdate))
-    var stmt = db.prepare(sql);
-    stmt.run(req.body.eventName, req.body.eventDate, req.body.eventLocation, req.body.eventDescription, req.body.eventLink, req.body.eventLead, req.body.eventBranchID, eventId);
-    // res.redirect("/event-details?id=" + eventId);
-
-    const querySql = 'SELECT * FROM events WHERE id = ' + eventId;
-    const events =  db.prepare(querySql).all();
-    const event = events.length == 1 ? events[0] : null;
-
     res.header("Access-Control-Allow-Origin", "*");
-    res.json(event);
+
+
+    if (eventId != null) {
+        console.log(JSON.stringify(req.body));
+
+        const eventToUpdate = [req.body.eventName, req.body.eventDate, req.body.eventLocation, req.body.eventDescription, req.body.eventLink, req.body.eventLead, req.body.eventBranchID, eventId];
+        const sql = "UPDATE Events SET Name = ?, Date = ?, Location = ?, Description = ?, Link = ?, Lead = ?, branchID = ? WHERE (ID = ?)";
+
+        console.log("UPDATING EVENT: " + JSON.stringify(eventToUpdate))
+        var stmt = db.prepare(sql);
+        stmt.run(req.body.eventName, req.body.eventDate, req.body.eventLocation, req.body.eventDescription, req.body.eventLink, req.body.eventLead, req.body.eventBranchID, eventId);
+        // res.redirect("/event-details?id=" + eventId);
+
+        const querySql = 'SELECT * FROM events WHERE id = ' + eventId;
+        const events = db.prepare(querySql).all();
+        const event = events.length == 1 ? events[0] : null;
+
+        res.header("Access-Control-Allow-Origin", "*");
+        res.json(event);
+    } else {
+        // NO EVENTID exists, so this is Add New Event flow.
+
+        console.log(JSON.stringify(req.body));
+
+        try {
+            // Insert new event into sqlite and fetch the newly inserted ID and return error or redirect to event-details page.
+            const eventToUpdate = [req.body.eventName, req.body.eventDate, req.body.eventLocation, req.body.eventDescription, req.body.eventLink, req.body.eventLead, req.body.eventBranchID];
+            const sql = "INSERT INTO Events (name, date, location, description, link, lead, branchID) VALUES (?,?,?, ?,?,?,?)";
+            //        var insertPast = 'INSERT INTO EVENTS (name, date, location, description, link, lead, branchID) VALUES (?,?,?, ?,?,?,?)';
+
+            console.log("Inserting EVENT: " + JSON.stringify(eventToUpdate))
+            var stmt = db.prepare(sql);
+            const info = stmt.run(req.body.eventName, req.body.eventDate, req.body.eventLocation, req.body.eventDescription, req.body.eventLink, req.body.eventLead, req.body.eventBranchID);
+            console.log ( "insert run INFO = " + JSON.stringify(info));
+            if (info.changes == 1)
+            {
+                const rowid = info.lastInsertRowid;
+                //display success, show event that was created, redirect to edit event page
+                const querySql = 'SELECT * FROM events WHERE ROWID = ' + rowid;
+                const newlyAddedEventResult = db.prepare(querySql).all();
+                const newlyAddedEvent = newlyAddedEventResult.length == 1 ? newlyAddedEventResult[0] : null;
+                // res.json(newlyAddedEvent);
+                const newEventId = newlyAddedEvent["id"];
+                res.redirect("/event-details?action=addcompleted&id=" + newEventId);
+            }
+        } catch (err) {
+            // TODO: REMOVE THIS for production builds
+            res.status(500).send("Internet Server Error - Error: " + err);
+        }
+    }
+
+    console.error("EVENT - POST API -- Internet Server Error - Unexpected codepath reached.");
+
 });
 
 
@@ -354,7 +391,7 @@ function AddSampleDataIfNotAlready(db: any) {
 
     console.log("Checking and adding EXECUTIVES.");
     const savedExecs = db.prepare("select * from EXECUTIVES").all();
-        console.log("Checking EXECUTIVES table.");
+    console.log("Checking EXECUTIVES table.");
 
     if (savedExecs != null && savedExecs.length == 0) {
         console.log("Adding sample Executives data.");
@@ -374,7 +411,7 @@ function AddSampleDataIfNotAlready(db: any) {
     console.log("Checking and adding EXECUTIVES.");
 
     const savedUsers = db.prepare("select * from USERS").all();
-        console.log("Checking USERS table");
+    console.log("Checking USERS table");
     if (savedUsers != null && savedUsers.length == 0) {
 
         console.log("Adding sample USERS data.");

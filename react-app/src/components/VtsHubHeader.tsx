@@ -7,12 +7,12 @@ import { Link } from "react-router-dom";
 
 const VtsHubHeader: React.FC = () => {
 
-return (
+  return (
     <div className='vtshubheader'>
-        <button><Link to="/upcoming-events">Upcoming Events</Link></button>
-        <button><Link to="/past-events">Past Events</Link></button>
-        <button><Link to="/executives">Executive Board</Link></button>
-        <button><a href='/auth/google'>Sign-in</a></button>
+      <button><a href='/'>Home</a></button>
+      <button><Link to="/upcoming-events">Upcoming Events</Link></button>
+      <button><Link to="/past-events">Past Events</Link></button>
+      <button><Link to="/executives">Executive Board</Link></button>
     </div>
   );
 }

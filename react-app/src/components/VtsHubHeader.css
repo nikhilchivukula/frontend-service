@@ -1,21 +1,32 @@
 
 .vtshubheader {
-    background-color: #ffa148;
-    color: #ffa148;
+    color: rgb(11, 0, 161);
     text-align: center;
+    font-weight: bolder;
+    border-bottom-width: 2px;
+    border-color: black;
 }
 
-div.vtshubheader button {
-    width: 20%;
-    height: 50px;
-    margin: 5px;
-    border-color: black;
-    border-width: 2px;
-}
 
 div.vtshubheader button a {
     display: block;
     height: 50px;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.vtsactionbar {
+    color: rgb(11, 0, 161);
+    text-align: center;
+    font-weight: bolder;
+    border-bottom-width: 2px;
+    border-color: black;
+}
+
+
+div.vtsactionbar button a {
+    display: block;
+    height: 20px;
     padding-top: 10px;
     text-align: center;
 }

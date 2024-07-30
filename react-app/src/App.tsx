@@ -6,6 +6,7 @@ import PastEvents from './components/PastEvents';
 import ExecutiveBoard from './components/ExecutiveBoard';
 import SignUp from './components/SignUp';
 import EventDetails from './components/Event-Detail';
+import AddEventPage from './components/Add-Event';
 
 const App: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const App: React.FC = () => {
         <Route path="/executives" element={<ExecutiveBoard />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/Event-Detail" element={<EventDetails/>} />
+        <Route path="/add-event" element={<AddEventPage/>} />
       </Routes>
     </Router>
   );

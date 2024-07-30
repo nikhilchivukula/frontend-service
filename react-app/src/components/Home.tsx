@@ -8,6 +8,8 @@ import './Calendar.css';
 import { MonthlyCalendarEventItem, DefaultEventItemProps } from './MonthlyCalendarEventItem'
 import VtsHubHeader from './VtsHubHeader';
 import VtsUser from './VtsUser';
+import VtsActionBar from './VtsActionBar';
+
 
 import {
   MonthlyBody,
@@ -136,12 +138,14 @@ const Home: React.FC = () => {
   return (
     <div>
       <div className="top-header flex-container">
-        <div className="topBar flex-item">Homepage 2</div>
+        <div className="topBar flex-item">Homepage</div>
 
         <VtsUser />
       </div>
 
       <VtsHubHeader />
+      <VtsActionBar/>
+
 
       <MyMonthlyCalendar />
 
@@ -151,3 +155,5 @@ const Home: React.FC = () => {
 }
 
 export default Home;
+
+

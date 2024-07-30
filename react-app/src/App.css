@@ -4,7 +4,7 @@
 }
 
 .topBar {
-  color: orange;
+  color: rgb(11, 0, 161);
 }
 
 .button-container {
@@ -21,12 +21,13 @@
 
 .flex-container {
   display: flex;
+  background-color:rgb(255, 138, 71)
 }
 
 .flex-item {
   flex: 1;
   padding: 10px;
-  border: 1px solid #000;
+  color: rgb(11, 0, 161);
 }
 
 .vtsuser {
