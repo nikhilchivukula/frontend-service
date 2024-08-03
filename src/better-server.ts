@@ -9,15 +9,6 @@ const passport = require('passport');
 
 const path = require('path');
 
-require('./auth');
-
-
-function isLoggedIn(req: any, res: any, next: any) {
-    req.user ? next() : res.sendStatus(401);
-}
-
-
-const app = express();
 
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
@@ -27,6 +18,16 @@ console.log ("App settings: GOOGLE_CLIENT_ID = " + GOOGLE_CLIENT_ID);
 console.log ("App settings: GOOGLE_CLIENT_SECRET = " + GOOGLE_CLIENT_SECRET);
 console.log ("App settings: GOOGLE_CALLBACK_URL = " + GOOGLE_CALLBACK_URL);
 console.log ("App settings: PORT = " + process.env.PORT);
+
+require('./auth');
+
+
+function isLoggedIn(req: any, res: any, next: any) {
+    req.user ? next() : res.sendStatus(401);
+}
+
+
+const app = express();
 
 const port = process.env.PORT || 8080;
 
