@@ -4,11 +4,13 @@
     "description": "",
     "main": "index.js",
     "scripts": {
+        "postinstall": "cd react-app && npm install",
+        "build": "cd react-app && npm run build",
+        "test": "echo \"No tests defined.\"",
+        "prestart": "cpx \"react-app/build/**/*.*\" \"src/build\"  -v",
+        "start": "ts-node src/better-server.ts",
         "start-js": "node index.js",
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "ts-node src/server.ts",
-        "better": "ts-node src/better-server.ts",
-        "build": "tsc",
+        "old-start": "ts-node src/server.ts",
         "serverStart": "nodemon index.js"
     },
     "author": "",
@@ -16,6 +18,7 @@
     "dependencies": {
         "better-sqlite3": "^11.1.2",
         "cors": "^2.8.5",
+        "cpx": "^1.5.0",
         "dotenv": "^16.4.5",
         "express": "^4.19.2",
         "express-session": "^1.18.0",

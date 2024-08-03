@@ -4,6 +4,9 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import './Event-Detail.css';
 import './Calendar.css';
 import '../App.css';
+import VtsHubHeader from './VtsHubHeader';
+import VtsUser from './VtsUser';
+
 
 const AddEventPage: React.FC = () => {
   const [eventName, setEventName] = useState('');
@@ -43,7 +46,7 @@ const AddEventPage: React.FC = () => {
 
       // Fetch data response of this post and display ERROR or SUCCESS messages
       const result = await axios.post(postUrl, formData);
-      
+
       // window.history.back();
       // Handle the response (e.g., redirect to a thank-you page)
     } catch (error) {
@@ -53,6 +56,13 @@ const AddEventPage: React.FC = () => {
   };
 
   return (
+    <div>
+      <div className="top-header flex-container">
+        <div className="topBar flex-item">Upcoming Events</div>
+
+        <VtsUser />
+      </div>
+      <VtsHubHeader />
     <div className="signup-container">
       <form autoComplete="off" onSubmit={submitEvent} className="signup-form">
         <div className="form-group">
@@ -128,6 +138,7 @@ const AddEventPage: React.FC = () => {
         <button type="submit" className="submit-button">Submit</button>
       </form>
     </div>
+  </div>
   );
 };
 

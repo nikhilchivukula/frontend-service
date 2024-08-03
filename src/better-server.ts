@@ -20,7 +20,7 @@ function isLoggedIn(req: any, res: any, next: any) {
 const app = express();
 const port = 8080;
 
-const reactAppFolder = path.join(__dirname, '.././react-app/build');
+const reactAppFolder = path.join(__dirname, './build');
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
