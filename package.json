@@ -5,12 +5,12 @@
     "main": "index.js",
     "scripts": {
         "postinstall": "cd react-app && npm install",
-        "build": "cd react-app && npm run build",
+        "build": "cd react-app && npm run build && cpx \"build/**/*.*\" \"../src/build\"  -v",
         "test": "echo \"No tests defined.\"",
-        "prestart": "cpx \"react-app/build/**/*.*\" \"src/build\"  -v",
         "start": "ts-node src/better-server.ts",
         "start-js": "node index.js",
         "old-start": "ts-node src/server.ts",
+        "old-prestart": "cpx \"react-app/build/**/*.*\" \"src/build\"  -v",
         "serverStart": "nodemon index.js"
     },
     "author": "",
