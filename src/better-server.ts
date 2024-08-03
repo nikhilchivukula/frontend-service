@@ -1,15 +1,15 @@
-    import express from 'express';
-    //import sqlite3 from 'sqlite3';
-    //const sqlite3 = require("sqlite3").verbose();
-    const betterSqlite3 = require("better-sqlite3");
-    // import { open } from 'sqlite';
-    import bodyParser from 'body-parser';
-    const session = require('express-session')
-    const passport = require('passport');
+import express from 'express';
+//import sqlite3 from 'sqlite3';
+//const sqlite3 = require("sqlite3").verbose();
+const betterSqlite3 = require("better-sqlite3");
+// import { open } from 'sqlite';
+import bodyParser from 'body-parser';
+const session = require('express-session')
+const passport = require('passport');
 
-    const path = require('path');
+const path = require('path');
 
-    require('./auth');
+require('./auth');
 
 
 function isLoggedIn(req: any, res: any, next: any) {
@@ -18,6 +18,16 @@ function isLoggedIn(req: any, res: any, next: any) {
 
 
 const app = express();
+
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
+const GOOGLE_CALLBACK_URL = process.env.GOOGLE_CALLBACK_URL;
+
+console.log ("App settings: GOOGLE_CLIENT_ID = " + GOOGLE_CLIENT_ID);
+console.log ("App settings: GOOGLE_CLIENT_SECRET = " + GOOGLE_CLIENT_SECRET);
+console.log ("App settings: GOOGLE_CALLBACK_URL = " + GOOGLE_CALLBACK_URL);
+console.log ("App settings: PORT = " + process.env.PORT);
+
 const port = process.env.PORT || 8080;
 
 const reactAppFolder = path.join(__dirname, './build');
