@@ -43,6 +43,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@zach.codes/react-calendar": "^0.3.3",
     "date-fns": "^3.6.0"
   }
