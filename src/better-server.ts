@@ -18,6 +18,7 @@ console.log ("App settings: GOOGLE_CLIENT_ID = " + GOOGLE_CLIENT_ID);
 console.log ("App settings: GOOGLE_CLIENT_SECRET = " + GOOGLE_CLIENT_SECRET);
 console.log ("App settings: GOOGLE_CALLBACK_URL = " + GOOGLE_CALLBACK_URL);
 console.log ("App settings: PORT = " + process.env.PORT);
+console.log ("App settings: APPLICATIONINSIGHTS_CONNECTION_STRING = " + process.env.APPLICATIONINSIGHTS_CONNECTION_STRING);
 
 require('./auth');
 
