@@ -32,7 +32,7 @@ const app = express();
 
 const port = process.env.PORT || 8080;
 
-const reactAppFolder = path.join(__dirname, './build');
+const reactAppFolder = path.join(__dirname, './webapp_build');
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
