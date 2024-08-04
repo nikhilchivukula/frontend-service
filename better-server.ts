@@ -30,7 +30,7 @@ function isLoggedIn(req: any, res: any, next: any) {
 
 const app = express();
 
-const port = process.env.PORT || 8080;
+const port = 80;
 
 const reactAppFolder = path.join(__dirname, './webapp_build');
 
