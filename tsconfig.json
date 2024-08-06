@@ -8,7 +8,7 @@
       "rootDir": "."
     },
     "files": [
-      "better-server.ts"
+      "index.ts"
     ],
   }
   
