@@ -2,13 +2,13 @@
     "name": "vts-hub-web-app",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "server.js",
     "scripts": {
         "postinstall": "cd react-app && npm install",
         "build": "npx tsc --esModuleInterop && cd react-app && npm run build && cpx \"build/**/*.*\" \"../webapp_build\"  -v",
         "test": "echo \"No tests defined.\"",
-        "start": "node index.js",
-        "tscstart": "ts-node index.ts"
+        "start": "node server.js",
+        "tscstart": "ts-node server.ts"
     },
     "author": "nikhilchivukula",
     "license": "MIT",
