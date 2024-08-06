@@ -12,6 +12,7 @@ src/build
 webapp_build
 better-server.js
 index.js
+server.js
 dist
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
