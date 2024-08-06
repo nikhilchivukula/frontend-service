@@ -2,12 +2,13 @@
     "compilerOptions": {
       "target": "ES6",
       "module": "commonjs",
-      "strict": true,
-      "esModuleInterop": true,
+      "esModuleInterop": false,
       "skipLibCheck": true,
       "forceConsistentCasingInFileNames": true,
-      "outDir": "./dist",
-      "rootDir": "./src"
-    }
+      "rootDir": "."
+    },
+    "files": [
+      "better-server.ts"
+    ],
   }
   

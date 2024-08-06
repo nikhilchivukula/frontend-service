@@ -5,9 +5,10 @@
     "main": "index.js",
     "scripts": {
         "postinstall": "cd react-app && npm install",
-        "build": "cd react-app && npm run build && cpx \"build/**/*.*\" \"../webapp_build\"  -v",
+        "build": "npx tsc --esModuleInterop && cd react-app && npm run build && cpx \"build/**/*.*\" \"../webapp_build\"  -v",
         "test": "echo \"No tests defined.\"",
-        "start": "ts-node better-server.ts",
+        "start": "better-server.js",
+        "start-ts": "ts-node better-server.ts",
         "start-js": "node index.js",
         "old-start": "ts-node misc/server.ts",
         "serverStart": "nodemon index.js"
