@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Calendar from './Calendar';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { format, subHours, startOfMonth } from 'date-fns';
 import '@zach.codes/react-calendar/dist/calendar-tailwind.css';
 import './Calendar.css';
@@ -9,7 +9,8 @@ import { MonthlyCalendarEventItem, DefaultEventItemProps } from './MonthlyCalend
 import VtsHubHeader from './VtsHubHeader';
 import VtsUser from './VtsUser';
 import VtsActionBar from './VtsActionBar';
-
+import Header from './Header';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import {
   MonthlyBody,
@@ -25,6 +26,10 @@ import {
   addDays,
   subDays,
 } from 'date-fns';
+import UpcomingEvents from './UpcomingEvents';
+import PastEvents from './PastEvents';
+import SignUp from './SignUp';
+import ExecutiveBoard from './ExecutiveBoard';
 
 export type EventType = {
   title: string;
@@ -63,10 +68,13 @@ const Home: React.FC = () => {
 
   const [vtsEvents, setVTSEvents] = useState<any[]>([]);
 
+  const [searchParams, setSearchParams] = useSearchParams();
+  const queryBranchCode = searchParams.get("branch") ?? "";
+
   useEffect(() => {
     var now = new Date();
     var month = now.getMonth();
-    axios.get('/api/events/calendar?month=' + month)
+    axios.get('/api/events/calendar?month=' + month + '&branch=' + queryBranchCode)
       .then(response => {
         setVTSEvents(response.data);
         updateCalendarEvents(response.data);
@@ -144,7 +152,7 @@ const Home: React.FC = () => {
       </div>
 
       <VtsHubHeader />
-      <VtsActionBar/>
+      <VtsActionBar />
 
 
       <MyMonthlyCalendar />

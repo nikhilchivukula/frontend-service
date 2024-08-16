@@ -37,7 +37,12 @@ const reactAppFolder = path.join(__dirname, './webapp_build');
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(session({ secret: "cats" }))
+app.use(session(
+    { 
+        secret: "cats",
+        resave: false,
+        saveUninitialized: false, 
+    }));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -193,6 +198,7 @@ app.get('/api/events/calendar', async (req, res) => {
 
     // month is 0-index based. 0-11 months in a year.
     const monthParam: any = req.query.month ?? now.getMonth();
+    const branchParam: any = req.query.branch ?? '';
 
     // const month = parseInt(monthParam);
     // var monthStart = "date('" + now.getFullYear() + "-" + month + "-1')";
@@ -205,9 +211,14 @@ app.get('/api/events/calendar', async (req, res) => {
     // var monthEnd = "'" + now.getFullYear() + "-" + month + "-31'";
     // const query = 'SELECT * FROM events WHERE date BETWEEN ' + monthStart + ' and ' + monthEnd;
 
-    const query = 'SELECT * FROM events';
+    let query = 'SELECT * FROM events';
 
-    console.log("Query being made = " + query);
+    // if any branch is provided in query, then limit results to just that branchId
+    if (branchParam) {
+        query = "SELECT * FROM events WHERE branchID = '" + branchParam + "'";
+    } 
+
+    console.log("/events/calendar Query being made = " + query);
     const events = db.prepare(query).all();
 
     res.header("Access-Control-Allow-Origin", "*");
@@ -371,6 +382,7 @@ app.use((req, res, next) => {
 
 
 // Start server
+console.log(`Server starting to listen on port ${port}`);
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
     console.log("__dirname: " + __dirname);

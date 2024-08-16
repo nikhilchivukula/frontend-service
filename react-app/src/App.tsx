@@ -7,10 +7,15 @@ import ExecutiveBoard from './components/ExecutiveBoard';
 import SignUp from './components/SignUp';
 import EventDetails from './components/Event-Detail';
 import AddEventPage from './components/Add-Event';
+import VtsHuhHeader from './components/VtsHubHeader';
+import VtsActionBar from './components/VtsActionBar';
+import Header from './components/Header';
+
 
 const App: React.FC = () => {
   return (
     <Router>
+      <Header/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/upcoming-events" element={<UpcomingEvents />} />

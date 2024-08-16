@@ -14,3 +14,67 @@
     font-size: 40px;
   }
   
+  .header {
+    background-color: #002366;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration-color: white;
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .branding h1 {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  .branding p {
+    margin: 5px 0;
+    font-size: 12px;
+  }
+  
+  .header-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .donate-button {
+    background-color: #b7410e;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .events-button {
+    background-color: #ffa500;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .nav-bar {
+    margin-top: 20px;
+    background-color: #add8e6;
+    padding: 10px 0;
+  }
+  
+  .nav-bar a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+  }
+  
+  .nav-bar a:hover {
+    color: #002366;
+  }
+  
